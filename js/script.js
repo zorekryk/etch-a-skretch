@@ -14,7 +14,7 @@ let eraserMode = false;
 
 sizeBtn.addEventListener("input", () => {
   size = sizeBtn.value;
-  gridSize.textContent = `${size} x ${size}`;
+  gridSize.textContent = `Grid size: ${size} x ${size}`;
   createGrid(size);
 });
 
