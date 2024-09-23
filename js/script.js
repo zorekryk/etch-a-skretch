@@ -12,14 +12,12 @@ let isDrawing = false;
 let rainbowMode = false;
 let eraserMode = false;
 
-// Оновлення розміру сітки при зміні слайдера
 sizeBtn.addEventListener("input", () => {
   size = sizeBtn.value;
   gridSize.textContent = `${size} x ${size}`;
   createGrid(size);
 });
 
-// Увімкнення/вимкнення rainbow mode
 rainbowBtn.addEventListener("click", () => {
   rainbowMode = !rainbowMode;
   if (rainbowMode) {
@@ -42,12 +40,10 @@ eraserBtn.addEventListener("click", () => {
   }
 });
 
-// Оновлення кольору при виборі нового кольору
 colorPicker.addEventListener("input", () => {
   color = colorPicker.value;
 });
 
-// Очищення сітки
 clearBtn.addEventListener("click", () => {
   const gridItems = document.querySelectorAll(".grid-item");
   gridItems.forEach((item) => {
@@ -55,7 +51,6 @@ clearBtn.addEventListener("click", () => {
   });
 });
 
-// Функція для створення випадкового кольору
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";
   let randomColor = "#";
@@ -65,14 +60,11 @@ const getRandomColor = () => {
   return randomColor;
 };
 
-// Функція для створення сітки
 const createGrid = (size) => {
   container.innerHTML = "";
 
-  // Обчислюємо розмір кожного блоку в залежності від розміру сітки
   const blockSize = 640 / size;
 
-  // Генеруємо блоки
   for (let i = 0; i < size * size; i++) {
     const div = document.createElement("div");
     div.classList.add("grid-item");
@@ -81,34 +73,31 @@ const createGrid = (size) => {
     div.style.height = `${blockSize}px`;
     container.appendChild(div);
   }
-
-  const applyColor = (item) => {
-    if (eraserMode) {
-      item.style.backgroundColor = "white";
-    } else {
-      item.style.backgroundColor = rainbowMode ? getRandomColor() : color;
-    }
-  };
-
-  // Додаємо події для малювання
-  const gridItems = document.querySelectorAll(".grid-item");
-  gridItems.forEach((item) => {
-    item.addEventListener("mousedown", () => {
-      isDrawing = true;
-      applyColor(item);
-    });
-
-    item.addEventListener("mouseover", () => {
-      if (isDrawing) {
-        applyColor(item);
-      }
-    });
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDrawing = false;
-  });
 };
 
-// Початкова генерація сітки
+container.addEventListener("mousedown", (e) => {
+  if (e.target.classList.contains("grid-item")) {
+    isDrawing = true;
+    applyColor(e.target);
+  }
+});
+
+container.addEventListener("mouseover", (e) => {
+  if (isDrawing && e.target.classList.contains("grid-item")) {
+    applyColor(e.target);
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  isDrawing = false;
+});
+
+const applyColor = (item) => {
+  if (eraserMode) {
+    item.style.backgroundColor = "white";
+  } else {
+    item.style.backgroundColor = rainbowMode ? getRandomColor() : color;
+  }
+};
+
 createGrid(size);
