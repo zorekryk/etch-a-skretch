@@ -96,6 +96,7 @@ input[type="color"]::-webkit-color-swatch {
 
 label {
   font-size: 1.2rem;
+  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 input[type="range"] {
