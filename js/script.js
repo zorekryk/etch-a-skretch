@@ -4,11 +4,13 @@ const colorPicker = document.querySelector("#color-picker");
 const sizeBtn = document.querySelector("#size-slider");
 const gridSize = document.querySelector("#grid-size");
 const rainbowBtn = document.querySelector("#rainbow-button");
+const eraserBtn = document.querySelector("#eraser-button");
 
 let size = 16;
 let color = "#333333";
 let isDrawing = false;
 let rainbowMode = false;
+let eraserMode = false;
 
 // Оновлення розміру сітки при зміні слайдера
 sizeBtn.addEventListener("input", () => {
@@ -29,7 +31,16 @@ rainbowBtn.addEventListener("click", () => {
   }
 });
 
-
+eraserBtn.addEventListener("click", () => {
+  eraserMode = !eraserMode;
+  if (eraserMode) {
+    eraserBtn.textContent = "Disable eraser mode";
+    eraserBtn.classList.add("button-primary");
+  } else {
+    eraserBtn.textContent = "Enable eraser mode";
+    eraserBtn.classList.remove("button-primary");
+  }
+});
 
 // Оновлення кольору при виборі нового кольору
 colorPicker.addEventListener("input", () => {
@@ -71,17 +82,25 @@ const createGrid = (size) => {
     container.appendChild(div);
   }
 
+  const applyColor = (item) => {
+    if (eraserMode) {
+      item.style.backgroundColor = "white";
+    } else {
+      item.style.backgroundColor = rainbowMode ? getRandomColor() : color;
+    }
+  };
+
   // Додаємо події для малювання
   const gridItems = document.querySelectorAll(".grid-item");
   gridItems.forEach((item) => {
     item.addEventListener("mousedown", () => {
       isDrawing = true;
-      item.style.backgroundColor = rainbowMode ? getRandomColor() : color;
+      applyColor(item);
     });
 
     item.addEventListener("mouseover", () => {
       if (isDrawing) {
-        item.style.backgroundColor = rainbowMode ? getRandomColor() : color;
+        applyColor(item);
       }
     });
   });

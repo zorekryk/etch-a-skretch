@@ -44,31 +44,31 @@ main {
   gap: 1rem;
 }
 
-.button-secondary {
+button {
   width: 70%;
   padding: 13px 0;
-  background-color: #ededed;
-  color: #333;
   border-radius: 15px;
   transition: 0.2s ease;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+  color: #333;
+}
+
+.button-secondary {
+  background-color: #ededed;
   border: 2px solid #333;
 }
 
 .button-primary {
-  width: 70%;
-  padding: 15px 0;
   background-color: #333;
   color: #ededed;
-  border-radius: 15px;
-  transition: 0.2s ease;
-  border: none;
 }
 
-button,
 input[type="color"] {
   transition: transform 0.1s ease-in-out;
 }
-.button-primary:hover,
 input[type="color"]:hover {
   transform: scale(1.05);
 }
@@ -92,6 +92,10 @@ input[type="color"]::-webkit-color-swatch {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+input[type="range"] {
+  width: 70%;
+}
+
 #grid-container {
   display: flex;
   flex-wrap: wrap;
@@ -101,7 +105,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 .grid-item {
   background-color: #fff;
-  transition: 0.3s ease;
+  transition: 0.2s ease;
   user-select: none;
 }
 
