@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Etch-a-Skretch</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <h1>Etch-a-Skretch</h1>
-  <div id="container"></div>
-  <script src="js/script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etch-a-Skretch</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Etch-a-Skretch</h1>
+    </header>
+
+    <main>
+      <div id="controls-container">
+        <input type="color" id="color-picker" value="#333333" />
+        <button id="clear-button" class="button-primary">Clear canvas</button>
+        <h2>Choose grid size</h2>
+        <label for="grid-size-slider" id="grid-size">16 x 16</label>
+        <input type="range" min="2" max="64" value="16" id="grid-size-slider" />
+      </div>
+      <div id="grid-container"></div>
+    </main>
+
+    <footer>
+      <a href="https://github.com/zorekryk" target="_blank" class="github-link"
+        >Kyryl Kolisnichenko</a
+      >
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
