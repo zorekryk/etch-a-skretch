@@ -1,2 +1,2 @@
 # etch-a-skretch
-Etch-a-Sketch game
+Simple JavaScript Etch-a-Sketch game
